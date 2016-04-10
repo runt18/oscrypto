@@ -58,7 +58,7 @@ def handle_error(error_num):
         BcryptConst.STATUS_INVALID_BUFFER_SIZE: 'The size of the buffer is invalid for the specified operation',
     }
 
-    output = 'NTSTATUS error 0x%0.2X' % error_num
+    output = 'NTSTATUS error 0x{0:0.2X}'.format(error_num)
 
     if error_num is not None and error_num in messages:
         output += ': ' + messages[error_num]

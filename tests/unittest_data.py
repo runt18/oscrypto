@@ -43,7 +43,7 @@ def data_decorator(cls):
             params = params[1:]
         else:
             data_name = num
-        expanded_name = 'test_%s_%s' % (name, data_name)
+        expanded_name = 'test_{0!s}_{1!s}'.format(name, data_name)
         # We used expanded variable names here since this line is present in
         # backtraces that are generated from test failures.
         generated_test_function = lambda self: original_function(self, *params)

@@ -24,7 +24,7 @@ version = platform.mac_ver()[0]
 version_info = tuple(map(int, version.split('.')))
 
 if version_info < (10, 7):
-    raise OSError('Only OS X 10.7 and newer are supported, not %s.%s' % (version_info[0], version_info[1]))
+    raise OSError('Only OS X 10.7 and newer are supported, not {0!s}.{1!s}'.format(version_info[0], version_info[1]))
 
 ffi = FFI()
 ffi.cdef("""

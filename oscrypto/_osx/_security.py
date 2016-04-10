@@ -42,7 +42,7 @@ def handle_sec_error(error, exception_class=None):
     CoreFoundation.CFRelease(cf_error_string)
 
     if output is None or output == '':
-        output = 'OSStatus %s' % error
+        output = 'OSStatus {0!s}'.format(error)
 
     if exception_class is None:
         exception_class = OSError

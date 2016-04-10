@@ -139,14 +139,14 @@ try:
 
     def struct(library, name):
         ffi_obj = _get_ffi(library)
-        return ffi_obj.new('%s *' % name)
+        return ffi_obj.new('{0!s} *'.format(name))
 
     def struct_bytes(struct_):
         return ffi.buffer(struct_)[:]
 
     def struct_from_buffer(library, name, buffer):
         ffi_obj = _get_ffi(library)
-        new_struct_pointer = ffi_obj.new('%s *' % name)
+        new_struct_pointer = ffi_obj.new('{0!s} *'.format(name))
         new_struct = new_struct_pointer[0]
         struct_size = sizeof(library, new_struct)
         struct_buffer = ffi_obj.buffer(new_struct_pointer)
@@ -155,7 +155,7 @@ try:
 
     def array_from_pointer(library, name, point, size):
         ffi_obj = _get_ffi(library)
-        array = ffi_obj.cast('%s[%s]' % (name, size), point)
+        array = ffi_obj.cast('{0!s}[{1!s}]'.format(name, size), point)
         total_bytes = ffi_obj.sizeof(array)
         if total_bytes == 0:
             return []

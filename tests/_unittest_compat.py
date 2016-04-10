@@ -26,20 +26,20 @@ def patch():
 
 def _assert_less(self, a, b, msg=None):
     if not a < b:
-        standard_msg = '%s not less than %s' % (unittest.util.safe_repr(a), unittest.util.safe_repr(b))
+        standard_msg = '{0!s} not less than {1!s}'.format(unittest.util.safe_repr(a), unittest.util.safe_repr(b))
         self.fail(self._formatMessage(msg, standard_msg))
 
 
 def _assert_is_instance(self, obj, cls, msg=None):
     if not isinstance(obj, cls):
         if not msg:
-            msg = '%s is not an instance of %r' % (obj, cls)
+            msg = '{0!s} is not an instance of {1!r}'.format(obj, cls)
         self.fail(msg)
 
 
 def _assert_in(self, member, container, msg=None):
     if member not in container:
-        standard_msg = '%s not found in %s' % (unittest.util.safe_repr(member), unittest.util.safe_repr(container))
+        standard_msg = '{0!s} not found in {1!s}'.format(unittest.util.safe_repr(member), unittest.util.safe_repr(container))
         self.fail(self._formatMessage(msg, standard_msg))
 
 
@@ -88,7 +88,6 @@ class _AssertRaisesContext(object):
         expected_regexp = self.expected_regexp
         if not expected_regexp.search(str(exc_value)):
             raise self.failureException(
-                '"%s" does not match "%s"' %
-                (expected_regexp.pattern, str(exc_value))
+                '"{0!s}" does not match "{1!s}"'.format(expected_regexp.pattern, str(exc_value))
             )
         return True

@@ -197,8 +197,8 @@ class CFHelpers():
 
         dict_length = CoreFoundation.CFDictionaryGetCount(dictionary)
 
-        keys = new(CoreFoundation, 'CFTypeRef[%s]' % dict_length)
-        values = new(CoreFoundation, 'CFTypeRef[%s]' % dict_length)
+        keys = new(CoreFoundation, 'CFTypeRef[{0!s}]'.format(dict_length))
+        values = new(CoreFoundation, 'CFTypeRef[{0!s}]'.format(dict_length))
         CoreFoundation.CFDictionaryGetKeysAndValues(
             dictionary,
             keys,

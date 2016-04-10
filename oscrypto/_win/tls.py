@@ -225,7 +225,7 @@ class TLSSession(object):
                 Secur32Const.CALG_SHA256,
             ])
 
-        alg_array = new(secur32, 'ALG_ID[%s]' % len(algs))
+        alg_array = new(secur32, 'ALG_ID[{0!s}]'.format(len(algs)))
         for index, alg in enumerate(algs):
             alg_array[index] = alg
 
@@ -477,7 +477,7 @@ class TLSSocket(object):
             A tuple of (SecBufferDesc pointer, SecBuffer array)
         """
 
-        buffers = new(secur32, 'SecBuffer[%d]' % number)
+        buffers = new(secur32, 'SecBuffer[{0:d}]'.format(number))
 
         for index in range(0, number):
             buffers[index].cbBuffer = 0

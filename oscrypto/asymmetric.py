@@ -446,7 +446,7 @@ def dump_openssl_private_key(private_key, passphrase):
 
         headers = OrderedDict()
         headers['Proc-Type'] = '4,ENCRYPTED'
-        headers['DEK-Info'] = 'AES-128-CBC,%s' % binascii.hexlify(iv).decode('ascii')
+        headers['DEK-Info'] = 'AES-128-CBC,{0!s}'.format(binascii.hexlify(iv).decode('ascii'))
 
         key_length = 16
         passphrase_bytes = passphrase.encode('utf-8')

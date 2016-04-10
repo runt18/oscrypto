@@ -59,7 +59,7 @@ def run():
         ['sdist', 'bdist_wheel', '--universal']
     )
 
-    twine.cli.dispatch(['upload', 'dist/oscrypto-%s*' % tag])
+    twine.cli.dispatch(['upload', 'dist/oscrypto-{0!s}*'.format(tag)])
 
     setuptools.sandbox.run_setup(
         setup_file,

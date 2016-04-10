@@ -337,18 +337,18 @@ def raise_hostname(certificate, hostname):
 
     is_ip = re.match('^\\d+\\.\\d+\\.\\d+\\.\\d+$', hostname) or hostname.find(':') != -1
     if is_ip:
-        hostname_type = 'IP address %s' % hostname
+        hostname_type = 'IP address {0!s}'.format(hostname)
     else:
-        hostname_type = 'domain name %s' % hostname
-    message = 'Server certificate verification failed - %s does not match' % hostname_type
+        hostname_type = 'domain name {0!s}'.format(hostname)
+    message = 'Server certificate verification failed - {0!s} does not match'.format(hostname_type)
     valid_ips = ', '.join(certificate.valid_ips)
     valid_domains = ', '.join(certificate.valid_domains)
     if valid_domains:
-        message += ' valid domains: %s' % valid_domains
+        message += ' valid domains: {0!s}'.format(valid_domains)
     if valid_domains and valid_ips:
         message += ' or'
     if valid_ips:
-        message += ' valid IP addresses: %s' % valid_ips
+        message += ' valid IP addresses: {0!s}'.format(valid_ips)
     raise TLSVerificationError(message, certificate)
 
 
@@ -462,10 +462,10 @@ def raise_expired_not_yet_valid(certificate):
 
     if not_before > now:
         formatted_before = not_before.strftime('%Y-%m-%d %H:%M:%SZ')
-        message = 'Server certificate verification failed - certificate not valid until %s' % formatted_before
+        message = 'Server certificate verification failed - certificate not valid until {0!s}'.format(formatted_before)
     elif not_after < now:
         formatted_after = not_after.strftime('%Y-%m-%d %H:%M:%SZ')
-        message = 'Server certificate verification failed - certificate expired %s' % formatted_after
+        message = 'Server certificate verification failed - certificate expired {0!s}'.format(formatted_after)
 
     raise TLSVerificationError(message, certificate)
 
@@ -495,7 +495,7 @@ def raise_protocol_error(server_handshake_bytes):
     other_protocol = detect_other_protocol(server_handshake_bytes)
 
     if other_protocol:
-        raise TLSError('TLS protocol error - server responded using %s' % other_protocol)
+        raise TLSError('TLS protocol error - server responded using {0!s}'.format(other_protocol))
 
     raise TLSError('TLS protocol error - server responded using a different protocol')
 

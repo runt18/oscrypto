@@ -53,7 +53,7 @@ def handle_error(result, exception_class=None):
     if exception_class is None:
         exception_class = OSError
 
-    raise exception_class(('SECURITY_STATUS error 0x%0.2X: ' % result) + error_string)
+    raise exception_class(('SECURITY_STATUS error 0x{0:0.2X}: '.format(result)) + error_string)
 
 
 class Secur32Const():

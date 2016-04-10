@@ -131,7 +131,7 @@ def pbkdf2_iteration_calculator(hash_algorithm, key_length, target_ms=100, quiet
         pbkdf2(hash_algorithm, password, salt, iterations, key_length)
         observed_ms = _get_elapsed(start)
         if not quiet:
-            print('%s iterations in %sms' % (iterations, observed_ms))
+            print('{0!s} iterations in {1!s}ms'.format(iterations, observed_ms))
         return 1.0 / target_ms * observed_ms
 
     # Measure the initial guess, then estimate how many iterations it would

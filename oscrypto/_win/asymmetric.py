@@ -1004,7 +1004,7 @@ def _interpret_dsa_key_blob(key_type, version, blob_struct, blob):
         g = int_from_bytes(blob[g_offset:public_offset])
 
     else:
-        raise ValueError('version must be 1 or 2, not %s' % repr(version))
+        raise ValueError('version must be 1 or 2, not {0!s}'.format(repr(version)))
 
     if key_type == 'public':
         public = int_from_bytes(blob[public_offset:private_offset])

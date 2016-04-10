@@ -38,4 +38,4 @@ def type_name(value):
         cls = value.__class__
     if cls.__module__ in set(['builtins', '__builtin__']):
         return cls.__name__
-    return '%s.%s' % (cls.__module__, cls.__name__)
+    return '{0!s}.{1!s}'.format(cls.__module__, cls.__name__)

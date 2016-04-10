@@ -204,7 +204,7 @@ def handle_cf_error(error_pointer):
                 output = code_map[num]
 
         if not output:
-            output = '%s %s' % (domain, num)
+            output = '{0!s} {1!s}'.format(domain, num)
 
     raise OSError(output)
 

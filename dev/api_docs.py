@@ -84,14 +84,14 @@ def _get_func_info(docstring, def_lineno, code_lines, prefix):
     description = description.strip()
     description_md = ''
     if description:
-        description_md = "%s%s" % (prefix, description.replace("\n", "\n" + prefix))
+        description_md = "{0!s}{1!s}".format(prefix, description.replace("\n", "\n" + prefix))
         description_md = re.sub('\n>(\\s+)\n', '\n>\n', description_md)
 
     params = params.strip()
     if params:
-        definition += (':\n%s    """\n%s    ' % (prefix, prefix))
-        definition += params.replace('\n', '\n%s    ' % prefix)
-        definition += ('\n%s    """' % prefix)
+        definition += (':\n{0!s}    """\n{1!s}    '.format(prefix, prefix))
+        definition += params.replace('\n', '\n{0!s}    '.format(prefix))
+        definition += ('\n{0!s}    """'.format(prefix))
         definition = re.sub('\n>(\\s+)\n', '\n>\n', definition)
 
     for search, replace in definition_replacements.items():
@@ -263,7 +263,7 @@ def walk_ast(node, code_lines, sections, md_chunks):
                         class_docstring = ast.get_docstring(node) or ''
                         class_description = textwrap.dedent(class_docstring).strip()
                         if class_description:
-                            class_description_md = "> %s\n>" % (class_description.replace("\n", "\n> "))
+                            class_description_md = "> {0!s}\n>".format((class_description.replace("\n", "\n> ")))
                         else:
                             class_description_md = ''
 
@@ -312,7 +312,7 @@ def walk_ast(node, code_lines, sections, md_chunks):
                     key = attribute_key
 
                     description = textwrap.dedent(docstring).strip()
-                    description_md = "> > %s" % (description.replace("\n", "\n> > "))
+                    description_md = "> > {0!s}".format((description.replace("\n", "\n> > ")))
 
                     md_chunk = textwrap.dedent("""
                         >
@@ -420,7 +420,7 @@ def run():
 
         for key in sections:
             if key not in md_chunks:
-                raise ValueError('No documentation found for %s' % key[1])
+                raise ValueError('No documentation found for {0!s}'.format(key[1]))
             added_lines = _replace_md(key, sections, md_chunks[key], md_lines, added_lines)
 
         markdown = '\n'.join(md_lines).strip() + '\n'
